@@ -1,2 +1,5 @@
-# Coding-Projects
-This project collection is for beginners who want to try out some simple Python programs. It also includes a fun video game called Space Invaders! If you want to learn how it was made, there’s a tutorial on YouTube you can check out. Feel free to explore, play around, and learn at your own pace!
+# Coding Projects
+
+This collection of projects is designed for beginners eager to try simple Python programs. It features fun video games, some created independently and others by YouTubers. If you're interested in learning how these projects were made, you can find tutorials on YouTube. Feel free to explore, experiment, and learn at your own pace!
+
+#Credits to Coding With Russ - SkyHop, ClearCode - RetroRunner, Space Invaders -  buildwithpython
