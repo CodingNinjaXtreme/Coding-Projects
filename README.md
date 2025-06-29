@@ -2,8 +2,10 @@ This collection features beginner-friendly Python projects designed to jumpstart
 
 🎮 Credits:
 
-RetroRunner by ClearCode
+RetroRunner by ClearCode.
 
-Space Invaders is inspired by BuildWithPython
+Space Invaders is inspired by Build With Python.
 
-AstroAvoid is inspired by TechWithTim
+Astro Avoid is inspired by Tech With Tim.
+
+Ancient War Game and Cyber Ninja are inspired by Ninedeadeyes.
