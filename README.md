@@ -4,6 +4,6 @@ This collection features beginner-friendly Python projects designed to jumpstart
 
 RetroRunner by ClearCode
 
-Space Invaders inspired by BuildWithPython
+Space Invaders is inspired by BuildWithPython
 
-AstroAvoid inspired by TechWithTim
+AstroAvoid is inspired by TechWithTim
