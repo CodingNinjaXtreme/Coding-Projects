@@ -1,6 +1,6 @@
 # 🎓 CodingNinjaXtreme: Beginner Python Projects
 
-Welcome to a collection of beginner-friendly Python games and mini-projects, built with ❤️ by a young coder! Whether you're just starting or exploring game development with Python, these projects offer fun, hands-on experience with real code.
+Welcome to a collection of beginner-friendly Python games and mini-projects, built by a young coder! Whether you're just starting or exploring game development with Python, these projects offer fun, hands-on experience with real code.
 
 Some games are original, others are inspired by YouTube tutorials — perfect for tinkering, learning, and leveling up your skills.
 
