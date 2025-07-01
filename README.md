@@ -73,6 +73,14 @@ Eat food, grow longer, and avoid hitting yourself or the walls in this retro sna
 🧠 Learn: Grid logic, snake movement, food spawning, game over states
 🎥 Original Project
 
+🎈 Balloon Pop
+Pop the colorful balloons before they float away in this fun and fast-paced arcade game.
+🧠 Learn: collision detection, event handling, scoring system, simple animations
+🎥 Original Project
+
+
+
+
 
 
 
