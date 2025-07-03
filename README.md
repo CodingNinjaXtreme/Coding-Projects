@@ -79,6 +79,17 @@ Pop the colorful balloons before they float away in this fun and fast-paced arca
 🎥 Original Project
 
 
+## 🤝 Contribute
+
+Want to improve one of the games? Add a new feature? Fix a bug?
+
+Pull requests are welcome! I'm learning too, so feel free to leave helpful feedback or suggestions.
+
+---
+
+⭐ If you like this project, consider starring the repo — it helps others find it!
+
+
 
 
 
