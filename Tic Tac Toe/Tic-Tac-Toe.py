@@ -179,7 +179,7 @@ while running:
                         col = x // CELL_SIZE
                         if row < 3 and col < 3 and board[row][col] is None:
                             board[row][col] = current_player
-                            check_winner()
+                            winner = check_winner()  # <- FIX HERE
                             if winner:
                                 game_over = True
                             elif check_tie():
@@ -195,7 +195,7 @@ while running:
         current_time = pygame.time.get_ticks()
         if current_time - ai_move_time >= AI_DELAY:
             ai_move()
-            check_winner()
+            winner = check_winner()  # <- FIX HERE
             if winner:
                 game_over = True
             elif check_tie():
