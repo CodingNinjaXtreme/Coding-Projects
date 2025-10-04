@@ -16,6 +16,8 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GREY = (200, 200, 200)
 DARK_GREY = (150, 150, 150)
+RED = (255,0,0)
+VIOLET = (127,0,255)
 
 # Fonts
 font = pygame.font.SysFont("comicsans", 180)  # bigger font for X/O
@@ -48,6 +50,12 @@ ai_turn = False
 ai_move_time = 0
 AI_DELAY = 1000  # milliseconds
 
+#Variables for timer
+TIME_LIMIT = 10
+current_time_left = TIME_LIMIT
+timer_start_time = pygame.time.get_ticks()
+timer_rect = pygame.Rect(SCREEN_WIDTH // 2 - 110, CELL_SIZE * 3 + 40, 220, 60) 
+
 def draw_menu():
     screen.fill(WHITE)
     title = button_font.render("Select Game Mode", True, BLACK)
@@ -65,14 +73,21 @@ def draw_menu():
 
 def draw_grid():
     for i in range(1, 3):
-        pygame.draw.line(screen, BLACK, (CELL_SIZE * i, 0), (CELL_SIZE * i, CELL_SIZE * 3), 8)
-        pygame.draw.line(screen, BLACK, (0, CELL_SIZE * i), (CELL_SIZE * 3, CELL_SIZE * i), 8)
+        pygame.draw.line(screen, VIOLET, (CELL_SIZE * i, 0), (CELL_SIZE * i, CELL_SIZE * 3), 8)
+        pygame.draw.line(screen, VIOLET, (0, CELL_SIZE * i), (CELL_SIZE * 3, CELL_SIZE * i), 8)
 
 def draw_marks():
     for row in range(3):
         for col in range(3):
             if board[row][col] is not None:
-                mark = font.render(board[row][col], True, BLACK)
+               
+                mark_value = board[row][col]
+
+                if mark_value == "O":
+                    mark = font.render(board[row][col], True, RED)
+                else:
+                    mark = font.render(board[row][col], True, BLACK)
+
                 mark_rect = mark.get_rect()
                 # Center in cell
                 cell_x = col * CELL_SIZE
@@ -93,6 +108,34 @@ def draw_game_buttons():
         text = button_font.render(text_str, True, BLACK)
         screen.blit(text, (rect.x + rect.width // 2 - text.get_width() // 2,
                            rect.y + rect.height // 2 - text.get_height() // 2))
+        
+def draw_timer():
+    global current_time_left,timer_start_time,game_over
+
+    elapsed_time = pygame.time.get_ticks() - timer_start_time
+
+    current_time_left = TIME_LIMIT - (elapsed_time/1000)
+
+    if current_time_left < 0 and not game_over and not in_menu:
+
+        global winner, current_player
+        winner = "O" if current_player == 'X' else "O"
+        game_over = True
+        current_time_left = 0
+
+    text_color = RED if current_time_left < 3 and current_time_left > 0 else BLACK
+
+    time_str = f"Time: {max(0, current_time_left):.1f}"
+    
+    timer_text = message_font.render(time_str, True, text_color)
+    
+    pygame.draw.rect(screen, GREY, timer_rect, border_radius=10)
+    pygame.draw.rect(screen, BLACK, timer_rect, 3, border_radius=10)
+    
+    text_x = timer_rect.x + (timer_rect.width - timer_text.get_width()) // 2
+    text_y = timer_rect.y + (timer_rect.height - timer_text.get_height()) // 2
+    screen.blit(timer_text, (text_x, text_y))
+
 
 def check_winner():
     for i in range(3):
@@ -113,12 +156,13 @@ def check_tie():
     return True
 
 def reset_game():
-    global board, current_player, game_over, winner, ai_turn
+    global board, current_player, game_over, winner, ai_turn, timer_start_time
     board = [[None] * 3 for _ in range(3)]
     current_player = "X"
     game_over = False
     winner = None
     ai_turn = False
+    timer_start_time = pygame.time.get_ticks()
 
 def find_winning_move(player):
     for row in range(3):
@@ -187,6 +231,7 @@ while running:
                                 game_over = True
                             else:
                                 current_player = "O" if current_player == "X" else "X"
+                                timer_start_time = pygame.time.get_ticks()
                                 if mode == "vs_ai" and current_player == "O" and not game_over:
                                     ai_turn = True
                                     ai_move_time = pygame.time.get_ticks()
@@ -203,6 +248,7 @@ while running:
                 game_over = True
             else:
                 current_player = "X"
+                timer_start_time = pygame.time.get_ticks()
             ai_turn = False
 
     if in_menu:
@@ -211,13 +257,14 @@ while running:
         draw_grid()
         draw_marks()
         draw_game_buttons()
+        if not game_over and not ai_turn :
+            draw_timer()
         if game_over:
             msg = f"{winner} wins!" if winner != "Tie" else "It's a tie!"
             msg_render = game_over_font.render(msg, True, BLACK)
             # Put the message above buttons to avoid overlap
             message_y = CELL_SIZE * 3 - 20  # bottom of grid + 20 px padding
             screen.blit(msg_render, (SCREEN_WIDTH // 2 - msg_render.get_width() // 2, message_y))
-
     pygame.display.flip()
     clock.tick(60)
 
